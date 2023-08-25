@@ -1,0 +1,25 @@
+﻿@model CoreAndFood.Data.Models.Category
+@{
+    ViewData["Title"] = "CategoryGet";
+    Layout = "_Layout";
+}
+
+<h2>Category Get Page</h2>
+<br />
+@using (Html.BeginForm("CategoryUpdate", "Category", FormMethod.Post))
+{
+    @Html.LabelFor(X=>X.CategoryID)
+    @Html.TextBoxFor(X=>X.CategoryID, new{@class="form-control"})
+    <br />
+    @Html.LabelFor(X=>X.CategoryName)
+    @Html.TextBoxFor(X=>X.CategoryName, new{@class="form-control"})
+    @Html.ValidationMessageFor(x=>x.CategoryName,"", new{@style="Color:red;"})
+    //Onay Mesajı Red yiyince
+    <br />
+    @Html.LabelFor(x=>x.CategoryDescription)
+    @Html.TextBoxFor(x=>x.CategoryDescription, new{@class="form-control"})
+    <br />
+    <button class="btn btn-warning">Update</button>
+}
+
+

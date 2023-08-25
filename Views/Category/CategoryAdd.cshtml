@@ -1,0 +1,22 @@
+﻿
+
+@model CoreAndFood.Data.Models.Category
+@{
+    ViewData["Title"] = "CategoryAdd";
+    Layout = "_Layout";
+}
+<h2>Category Add Page</h2>
+<br />
+@using (Html.BeginForm("CategoryAdd", "Category", FormMethod.Post))
+{
+    @Html.LabelFor(X=>X.CategoryName)
+    @Html.TextBoxFor(X=>X.CategoryName, new{@class="form-control"})
+    @Html.ValidationMessageFor(x=>x.CategoryName,"", new{@style="Color:red;"}) //Onay Mesajı Red yiyince
+    <br />
+    @Html.LabelFor(x=>x.CategoryDescription)
+    @Html.TextBoxFor(x=>x.CategoryDescription, new{@class="form-control"})
+    <br />
+    <button class="btn btn-info">Save</button>
+}
+
+

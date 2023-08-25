@@ -1,0 +1,37 @@
+﻿@using X.PagedList;         @*sayfalama işlemi için paging*@
+@using X.PagedList.Mvc.Core;        @*sayfalama işlemi için paging*@
+@model IPagedList<CoreAndFood.Data.Models.Food>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Index";
+}
+<h2>Foods</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>CATEGORY</th>
+        <th>FOOD NAME</th>
+        
+        <th>PRICE</th>
+        <th>STOCK</th>
+        <th>DELETE</th>
+        <th>UPDATE</th>
+        <th>DESCRIPTION</th>
+        
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.FoodID</td>
+            <td>@x.Category.CategoryName</td> <!--generıctekı include metodu sayesinde-->
+            <td>@x.Name</td>
+            <td>@x.Price</td>
+            <td>@x.Stock</td>
+            <td><a href="/Food/FoodDelete/@x.FoodID" class="btn btn-danger">Delete</a></td>
+            <td><a href="/Food/FoodGet/@x.FoodID" class="btn btn-default">Update</a></td>
+            <td><a href="#" class="btn btn-info">Details</a></td>
+        </tr>
+    }
+</table>
+@Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index",new {page})) <!--Sayfalama işlemi html helper komutu-->
+<a href="/Food/FoodAdd" class="btn btn-info">New Food</a>
